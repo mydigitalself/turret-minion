@@ -1,5 +1,7 @@
 # Turret minions
 
+Disclaimer: This was hacked together at 1am after much wine during dinner last night. The code is both bad and very silly.
+
 ## Instructions
 
 1. visit https://gitter.im/LXJS/training-nodebots
