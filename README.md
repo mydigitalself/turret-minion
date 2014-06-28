@@ -22,4 +22,4 @@ You can also use the following commands that the minions will listen to:
 * minions ARISE
 * minions to 2 o clock
 * minions FIRE AT THE THINGS!
-* minions left/right/up/down degrees (e.g. minions left 40 or minions down 20)
+* minions pan/tilt degrees (e.g. minions tilt 40 or minions pan 20)
