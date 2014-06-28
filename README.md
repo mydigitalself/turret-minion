@@ -2,12 +2,11 @@
 
 ## Instructions
 
-1. npm install turret-minion
-2. visit https://gitter.im/LXJS/training-nodebots
-3. visit https://developer.gitter.im
-4. click signin
-5. copy your personal access token
-6. TOKEN=yourtoken ROOM=LXJS/training-nodebots node app.js
+1. visit https://gitter.im/LXJS/training-nodebots
+2. visit https://developer.gitter.im
+3. click signin
+4. copy your personal access token
+5. TOKEN=yourtoken ROOM=LXJS/training-nodebots node app.js
 
 ## Commands
 
