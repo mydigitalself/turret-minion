@@ -11,6 +11,44 @@ var tilt;
 var panValue;
 var tiltValue;
 
+function Queue(executor) {
+  this.queue = [];
+  this.executor = executor;
+}
+
+Queue.prototype.add = function(value, done) {
+  this.queue.push({ value: value, callback: done });
+  if(!this.running) {
+    this.next();
+  } 
+}
+
+Queue.prototype.next = function() {
+
+  this.running = this.queue.length > 0;
+  if(!this.running) return;
+
+  var self = this;
+
+  var item = this.queue.shift()
+
+  this.executor(item.value, function() {
+    setImmediate(function() {
+      if(item.callback) item.callback();
+      self.next();
+    });
+  });
+}
+
+var tiltQueue = new Queue(function(value, done) { 
+  internalTiltTo(value, done);
+})
+
+var panQueue = new Queue(function(value, done) { 
+  internalPanTo(value, done);
+})
+
+
 board.on('ready', function () {
   pan = new five.Servo(9);
   led = new five.Led(11);
@@ -47,16 +85,25 @@ function smooth(start, stop, steps, time, callback, complete) {
 }
 
 function arise() {
-  tiltTo(10, function() {
-    tiltTo(170, function() {
-      tiltTo(90);
-    });
-  });
-  panTo(10, function() {
-    panTo(170, function() {
-      panTo(90);
-    });
-  });
+  tiltQueue.add(10);
+  tiltQueue.add(170);
+  tiltQueue.add(90);
+
+  // tiltTo(10, function() {
+  //   tiltTo(170, function() {
+  //     tiltTo(90);
+  //   });
+  // });
+
+  panQueue.add(10);
+  panQueue.add(170);
+  panQueue.add(90);
+
+  // panTo(10, function() {
+  //   panTo(170, function() {
+  //     panTo(90);
+  //   });
+  // });
 }
 exports.arise = arise;
 
@@ -68,7 +115,7 @@ function fireLaser(time){
 }
 exports.fireLaser = fireLaser;
 
-function panTo(value, done) {
+function internalPanTo(value, done) {
   smooth(panValue, value, 120, 15, function(value) { 
     pan.to(value);
   }, function(value) {
@@ -76,9 +123,12 @@ function panTo(value, done) {
     if(done) done(value);
   });
 }  
+function panTo(value, done) {
+  panQueue.add(value, done);
+}
 exports.panTo = panTo;
 
-function tiltTo(value, done) {
+function internalTiltTo(value, done) {
   smooth(tiltValue, value, 120, 15, function(value) { 
 
     tilt.to(value);
@@ -87,6 +137,10 @@ function tiltTo(value, done) {
     if(done) done(value);
   });
 }  
+
+function tiltTo(value, done) {
+  tiltQueue.add(value, done);
+}
 exports.tiltTo = tiltTo;
 
 
