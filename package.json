@@ -1,0 +1,8 @@
+{
+  "name": "gitter-webapp",
+  "version": "2.1.3",
+  "dependencies": {
+    "player": "^0.1.8",
+    "node-gitter": "^1.2.1"
+  }
+}
