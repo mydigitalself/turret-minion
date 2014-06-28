@@ -1,12 +1,16 @@
 # Turret minions
 
+Disclaimer: This was hacked together at 1am after much wine during dinner last night. The code is both bad and very silly.
+
 ## Instructions
 
-1. visit https://gitter.im/LXJS/training-nodebots
-2. visit https://developer.gitter.im
-3. click signin
-4. copy your personal access token
-5. TOKEN=yourtoken ROOM=LXJS/training-nodebots node app.js
+1. Clone this repo
+2. npm install
+3. visit https://gitter.im/LXJS/training-nodebots
+4. visit https://developer.gitter.im
+5. click signin
+6. copy your personal access token
+7. TOKEN=yourtoken ROOM=LXJS/training-nodebots node app.js
 
 ## Commands
 
