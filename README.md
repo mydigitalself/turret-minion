@@ -1,4 +1,5 @@
 # Turret minions
+[![Gitter chat](https://badges.gitter.im/jah/poes.png)](https://gitter.im/gitterHQ)
 
 Disclaimer: This was hacked together at 1am after much wine during dinner last night. The code is both bad and very silly.
 
